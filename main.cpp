@@ -53,29 +53,29 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
  */
  struct Oscillator
  {
+   float frequency = 440.0;
    float phase = 0.0;
-   float amplitude = 0.0;
+   float amplitude = 1.0;
    unsigned int waveType = 0;
 
-   void init(float p, float a, unsigned int w);
    void play();
    void stop();   
- }
+ };
 
 /*
  2)
  */
  struct Envelope
  {
-   float attack = 0.1;
-   float decay = 0.1;
-   float sustain = 1.0
-   float release = 0.5;
+   float attack = 0.1f;
+   float decay = 0.1f;
+   float sustain = 1.0f;
+   float release = 0.5f;
+   float amplitude = 1.0f;
 
-   void init(float a, float d, float s, float r)
    void trigger();
    void reset();
- }
+ };
 
 /*
  3)
@@ -86,13 +86,13 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 
    struct Bulb
    {
-     float brightness = 100.0
-     float warmth = 0.5;
-   }
+     float brightness = 100.0f;
+     float warmth = 0.5f;
+   };
 
    void changeBulb(Bulb bulb);
-   void flipSwitch(on);
- }
+   void flipSwitch();
+ };
 
 
 /*
@@ -102,11 +102,11 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
  {
    unsigned int numPages = 100;
    unsigned int currentPage = 0;
-   float fontSize = 12.0;
+   float fontSize = 12.0f;
    bool isHardBack = false;
 
    void turnPage();
- }
+ };
 
 /*
  5)
@@ -117,48 +117,48 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
    
    struct Wheel
    {
-     float diameter = 2.0;
+     float diameter = 2.0f;
      int numSpokes = 20;
-   }
+   };
 
    void addWheel(Wheel wheel);
    void pedal();
    void brake();
- }
+ };
 
 /*
  6)
  */
  struct Machine
  {
-   float voltage = 10.0
+   float voltage = 10.0f;
    unsigned int numWidgets = 100;
 
    struct Widget
    {
-     float rotatorSize = 1.0;
+     float rotatorSize = 1.0f;
      unsigned int shape = 1;
-   }
+   };
 
    struct Foo
    {
-     float bar = 0.0;
-   }
+     float bar = 0.0f;
+   };
 
    void addWidget(Widget w);
    float processFoo(Foo foo);
- }
+ };
 
 /*
  7)
  */
  struct Phone
  {
-   float screenSize = 5.7 ;
+   float screenSize = 5.7f;
    bool isSmart = true;
    
    void makeCall(int phoneNumber);
- }
+ };
 
 /*
  8)
@@ -171,19 +171,19 @@ struct Keyboard
 
   void setCurrentKeyDepressed(char key);
 
-}
+};
 /*
  9)
  */
  struct Can
  {
-   float height = 5.0;
-   float radius = 2.0;
+   float height = 5.0f;
+   float radius = 2.0f;
    bool isOpen = false;
 
    void open();
    float getVolume();
- }
+ };
 /*
  10)
  */
@@ -191,42 +191,41 @@ struct Keyboard
  {
   struct Oscillator
   {
-    float phase = 0.0;
-    float amplitude = 0.0;
+    float frequency = 440.0f;
+    float phase = 0.0f;
+    float amplitude = 1.0f;
     unsigned int waveType = 0;
 
-    void init(float p, float a, unsigned int w);
     void play();
     void stop();   
-  }
+  };
 
   struct Envelope
   {
-    float attack = 0.1;
-    float decay = 0.1;
-    float sustain = 1.0
-    float release = 0.5;
+    float attack = 0.1f;
+    float decay = 0.1f;
+    float sustain = 1.0f;
+    float release = 0.5f;
+    float amplitude = 1.0f;
 
-    void init(float a, float d, float s, float r)
     void trigger();
     void reset();
-  }
+  };
 
   struct Filter
   {
-    float cutoff = 600.0;
-    float resonance = 0;
+    float cutoff = 600.0f;
+    float resonance = 0.f;
     int numPoles = 12;
-  }
+  };
 
   Oscillator osc;
   Envelope filterEnv;
   Envelope ampEnv;
   Filter filter;
 
-  void init(Oscillator osc, Filter filter, Envelope filterEnv, Envelope ampEnv);
   float render(float ampLevel);
- }
+ };
 
 #include <iostream>
 int main()
