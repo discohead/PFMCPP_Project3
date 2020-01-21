@@ -51,8 +51,8 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 /*
  1)
  */
- struct Oscillator
- {
+struct Oscillator
+{
     float frequency = 440.0;
     float phase = 0.0;
     float amplitude = 1.0;
@@ -60,13 +60,13 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 
     void play();
     void stop();   
- };
+};
 
 /*
- 2)
- */
- struct Envelope
- {
+2)
+*/
+struct Envelope
+{
     float attack = 0.1f;
     float decay = 0.1f;
     float sustain = 1.0f;
@@ -75,13 +75,13 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 
     void trigger();
     void reset();
- };
+};
 
 /*
- 3)
- */
- struct Lamp
- {
+3)
+*/
+struct Lamp
+{
     bool on = false;
 
     struct Bulb
@@ -92,27 +92,27 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 
     void changeBulb(Bulb bulb);
     void flipSwitch();
- };
+};
 
 
 /*
- 4)
- */
- struct Book
- {
+4)
+*/
+struct Book
+{
     unsigned int numPages = 100;
     unsigned int currentPage = 0;
     float fontSize = 12.0f;
     bool isHardBack = false;
 
     void turnPage();
- };
+};
 
 /*
- 5)
- */
- struct Cycle
- {
+5)
+*/
+struct Cycle
+{
     unsigned int numWheels = 2;
 
     struct Wheel
@@ -124,13 +124,13 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
     void addWheel(Wheel wheel);
     void pedal();
     void brake();
- };
+};
 
 /*
- 6)
- */
- struct Machine
- {
+6)
+*/
+struct Machine
+{
     float voltage = 10.0f;
     unsigned int numWidgets = 100;
 
@@ -147,22 +147,22 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 
     void addWidget(Widget w);
     float processFoo(Foo foo);
- };
+};
 
 /*
- 7)
- */
- struct Phone
- {
+7)
+*/
+struct Phone
+{
     float screenSize = 5.7f;
     bool isSmart = true;
 
     void makeCall(int phoneNumber);
- };
+};
 
 /*
- 8)
- */
+8)
+*/
 struct Keyboard
 {
     bool isQwerty = true;
@@ -172,22 +172,22 @@ struct Keyboard
     void setCurrentKeyDepressed(char key);
 };
 /*
- 9)
- */
- struct Can
- {
+9)
+*/
+struct Can
+{
     float height = 5.0f;
     float radius = 2.0f;
     bool isOpen = false;
 
     void open();
     float getVolume();
- };
+};
 /*
- 10)
- */
- struct Synthesizer
- {
+10)
+*/
+struct Synthesizer
+{
     struct Oscillator
     {
         float frequency = 440.0f;
@@ -224,7 +224,7 @@ struct Keyboard
     Filter filter;
 
     float render(float ampLevel);
- };
+};
 
 #include <iostream>
 int main()
