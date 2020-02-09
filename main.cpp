@@ -1,4 +1,3 @@
- #include <iostream>
  /*
  Project 3 - Part 2 / 5
  Video: Chapter 2 Part 6
@@ -12,46 +11,10 @@ Create a branch named Part2
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
-struct Person
-{
-    int distanceTraveled = 0;
 
-    struct Foot
-    {
-        int steps = 0;
-        int stepDistance = 1;
 
-        void stepForward()
-        {
-            steps += 1;
-        }
 
-        int stepSize()
-        {
-            return stepDistance;
-        }
-    };
 
-    Foot leftFoot;
-    Foot rightFoot;
-
-    void run(bool startWithLeftFoot);
-};
-
-void Person::run(bool startWithLeftFoot)
-{
-    if (startWithLeftFoot)
-    {
-        leftFoot.stepForward();
-        rightFoot.stepForward();
-    }
-    else
-    {
-        rightFoot.stepForward();
-        leftFoot.stepForward();
-    }
-    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
-}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -77,28 +40,16 @@ struct Oscillator
     float phase = 0.0;
     float amplitude = 1.0;
     unsigned int waveType = 0;
-    bool on = false;
 
     void play();
     void stop();   
 };
 
-void Oscillator::play()
-{
-    on = true;
-}
-
-void Oscillator::stop()
-{
-    on = false;
-}
 /*
 2)
 */
 struct Envelope
 {
-    int numStages = 4;
-    int currentStage = 0;
     float attack = 0.1f;
     float decay = 0.1f;
     float sustain = 1.0f;
@@ -109,18 +60,6 @@ struct Envelope
     void reset();
 };
 
-void Envelope::trigger()
-{
-    for (int i = 0; i < numStages; i++)
-    {
-        currentStage++;
-    }
-}
-
-void Envelope::reset()
-{
-    currentStage = 0;
-}
 /*
 3)
 */
@@ -134,21 +73,11 @@ struct Lamp
         float warmth = 0.5f;
     };
 
-    Bulb bulb;
-
-    void changeBulb(Bulb newBulb);
+    void changeBulb(Bulb bulb);
     void flipSwitch();
 };
 
-void Lamp::changeBulb(Lamp::Bulb newBulb)
-{   
-    bulb = newBulb;
-}
 
-void Lamp::flipSwitch()
-{
-    on = !on;
-}
 /*
 4)
 */
@@ -162,55 +91,37 @@ struct Book
     void turnPage();
 };
 
-void Book::turnPage()
-{
-    currentPage++;
-}
 /*
 5)
 */
-struct Bicycle
+struct Cycle
 {
+    unsigned int numWheels = 2;
+
     struct Wheel
     {
         float diameter = 2.0f;
         int numSpokes = 20;
     };
 
-    Wheel frontWheel;
-    Wheel rearWheel;
-
-    void changeWheel(bool frontWheel, Wheel newWheel);
+    void addWheel(Wheel wheel);
     void pedal();
     void brake();
 };
 
-void Bicycle::changeWheel(bool isFrontWheel, Bicycle::Wheel newWheel)
-{
-    if (isFrontWheel)
-    {
-        frontWheel = newWheel;
-    }
-    else
-    {
-        rearWheel = newWheel;
-    }
-}
 /*
 6)
 */
 struct Machine
 {
-    static const unsigned int maxWidgets = 100;
-    unsigned int numWidgets = 0;
-    
+    float voltage = 10.0f;
+    unsigned int numWidgets = 100;
+
     struct Widget
     {
         float rotatorSize = 1.0f;
         unsigned int shape = 1;
     };
-
-    Widget widgets[maxWidgets];
 
     struct Foo
     {
@@ -221,16 +132,6 @@ struct Machine
     float processFoo(Foo foo);
 };
 
-void Machine::addWidget(Machine::Widget w)
-{
-    widgets[numWidgets] = w;
-    numWidgets++;
-}
-
-float Machine::processFoo(Machine::Foo foo)
-{
-    return foo.bar * numWidgets;
-}
 /*
 7)
 */
@@ -242,10 +143,6 @@ struct Phone
     void makeCall(int phoneNumber);
 };
 
-void Phone::makeCall(int phoneNumber)
-{
-    std::cout << "Calling: " << phoneNumber << std::endl;
-}
 /*
 8)
 */
@@ -257,11 +154,6 @@ struct Keyboard
 
     void setCurrentKeyDepressed(char key);
 };
-
-void Keyboard::setCurrentKeyDepressed(char key)
-{
-    currentKeyDepressed = key;
-}
 /*
 9)
 */
@@ -274,21 +166,34 @@ struct Can
     void open();
     float getVolume();
 };
-
-void Can::open()
-{
-    isOpen = true;
-}
-
-float Can::getVolume()
-{
-    return 3.14f * radius * radius * height;
-}
 /*
 10)
 */
 struct Synthesizer
 {
+    struct Oscillator
+    {
+        float frequency = 440.0f;
+        float phase = 0.0f;
+        float amplitude = 1.0f;
+        unsigned int waveType = 0;
+
+        void play();
+        void stop();   
+    };
+
+    struct Envelope
+    {
+        float attack = 0.1f;
+        float decay = 0.1f;
+        float sustain = 1.0f;
+        float release = 0.5f;
+        float amplitude = 1.0f;
+
+        void trigger();
+        void reset();
+    };
+
     struct Filter
     {
         float cutoff = 600.0f;
@@ -304,11 +209,7 @@ struct Synthesizer
     float render(float ampLevel);
 };
 
-float Synthesizer::render(float ampLevel)
-{
-    return osc.amplitude * filter.cutoff * filterEnv.amplitude * ampEnv.amplitude * ampLevel;
-}
-
+#include <iostream>
 int main()
 {
     std::cout << "good to go!" << std::endl;
